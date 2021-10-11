@@ -25,16 +25,14 @@
         {% endcomment %}
         {% if request.user.is_authenticated %}
         <li class="header__menuItem">
-          <a href="{% url 'createproject' %}" class="btn btn--sub"
-            >Add Project</a
-          >
+          <a href="{% url 'account' %}" >Account</a>
         </li>
         <li class="header__menuItem">
           <a href="{% url 'logout' %}" class="btn btn--sub">Logout</a>
         </li>
         {% else %}
         <li class="header__menuItem">
-          <a href="{% url 'login' %}" class="btn btn--sub">Account</a>
+          <a href="{% url 'login' %}" class="btn btn--sub">sing in|up </a>
         </li>
         {% endif %}
       </ul>
