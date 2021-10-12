@@ -53,6 +53,11 @@
   color: var(--color-white);
 }
 
+.btn--danger {
+  background-color: var(--color-danger);
+  color: var(--color-white)
+}
+
 .btn.btn--sub--outline {
   background-color: transparent;
   color: var(--color-sub);

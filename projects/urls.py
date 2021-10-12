@@ -8,4 +8,5 @@ urlpatterns = [
     path('create-project', createProject, name='createproject'),
     path('update-project/<str:pk>', updateProject, name='updateproject'),
     path('delete-project/<str:pk>', deleteProject, name='deleteproject'),
+
 ]
