@@ -3,8 +3,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile,  Skill
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
+from .utils import searchDevelopers
 
 
 def loginUser(request):
@@ -27,7 +28,7 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('profiles')
+            return redirect('account')
         else:
             messages.error(request, 'Username OR Password is incorrect')
 
@@ -67,10 +68,9 @@ def register(request):
     return render(request, 'login_register.html', context)
 
 
-
 def profiles(request):
-    profiles = Profile.objects.all()
-    context = {'profiles': profiles}
+    profiles, search_query = searchDevelopers(request)
+    context = {'profiles': profiles, 'search_query': search_query}
     return render(request, 'profiles.html', context)
 
 
@@ -108,7 +108,7 @@ def editAccount(request):
 
     profile = request.user.profile
 
-    form  = ProfileForm(instance=profile)
+    form = ProfileForm(instance=profile)
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
