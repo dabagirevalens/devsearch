@@ -20,14 +20,16 @@
           <a href="{% url 'projects' %}">Projects</a>
         </li>
         <li class="header__menuItem"><a href="inbox.html">Inbox</a></li>
-        {% comment %}
-        <li class="header__menuItem"><a href="account.html">My Account</a></li>
-        {% endcomment %}
         {% if request.user.is_authenticated %}
+        
         <li class="header__menuItem">
-          <a href="{% url 'account' %}" >Account</a>
+          <a href="{% url 'account' %}" >My account</a>
         </li>
         <li class="header__menuItem">
+        {% comment %} <img
+              class="avatar avatar--sm dev__avatar toggle-menu__lines"
+              src="{{ request.user.profile.profile_image.url }}"
+          /> {% endcomment %}
           <a href="{% url 'logout' %}" class="btn btn--sub">Logout</a>
         </li>
         {% else %}
