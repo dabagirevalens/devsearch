@@ -1,5 +1,31 @@
 {% load static %}
 
+<style>
+  .dropdown_action {
+    position: absolute;
+    top: 70px;
+    padding: 2rem;
+    right: 13rem;
+    background-color: #ddd;
+    box-sizing: border-box;
+    border-radius: 12px ;
+    width: 180px;
+    transition: 0.2s;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .dropdown_action.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dropdown_action ul {
+    list-style: none;
+    margin : 2rem 0 2rem 0;
+  }
+</style>
+
 <!-- Header Section -->
 <header class="header">
   <div class="container container--narrow">
@@ -22,21 +48,24 @@
         {% if request.user.is_authenticated %}
         <li class="header__menuItem"><a href="{% url 'inbox' %}">Inbox</a></li>
         <li class="header__menuItem">
-          <a href="{% url 'account' %}" >My account</a>
+          <a href="{% url 'account' %}">My account</a>
         </li>
 
         <li class="header__menuItem">
-         <a href="{% url 'logout' %}" >
-          <div class="" style='display: flex; align-items: center;'>
-          <span style='margin-right: 10px; color: #ccc'>{{ request.user.profile.name }}</span>
-          <img
-              class="avatar avatar--sm dev__avatar toggle-menu__lines"
+            <img
+              class="avatar avatar--sm dev__avatar"
               src="{{ request.user.profile.profile_image.url }}"
-          /> 
-         </div>
-         </a>
+              onclick="menuToggle();"
+            />
+            <div class="dropdown_action">
+              <strong>{{ request.user.profile.name }}</strong>
+              <ul>
+                <li >
+                  <a href="{% url 'logout' %}">Logout</a>
+                </li>
+              </ul>
+            </div>
         </li>
-        
 
         {% else %}
         <li class="header__menuItem">
@@ -47,3 +76,12 @@
     </nav>
   </div>
 </header>
+
+
+<script>
+ 
+function menuToggle() {
+    let menuToggle = document.querySelector('.dropdown_action')
+    menuToggle.classList.toggle('active')
+}
+</script>
