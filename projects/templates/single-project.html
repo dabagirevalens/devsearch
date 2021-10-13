@@ -48,17 +48,27 @@
                   ({{project.vote_total}} Vote{{project.vote_total|pluralize:"s"}})
             </h5>
 
+            {% if request.user.profile.id in project.reviewers %}
+            <p>You have already submitted your review.</p>
+            {% elif request.user.profile == project.owner %}
+            <p>You can not review your work.</p>
+            {% elif request.user.is_authenticated %}
             <form class="form" action="{% url 'project' project.id %}" method="POST">
-            {% csrf_token %}
-            {% for field in form %}
-              <!-- Textarea -->
-              <div class="form__field">
-                <label for="formInput#textarea">{{field.label}}</label>
-                {{field}}
-              </div>
-            {% endfor %}
-              <input class="btn btn--sub btn--lg" type="submit" value="Add a review" />
-            </form>
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form__field">
+                            <label for="formInput#textarea">{{field.label}}</label>
+                            {{field}}
+                        </div>
+                        {% endfor %}
+                        <input class="btn btn--sub btn--lg" type="submit" value="Add Review" />
+                    </form>
+            {% else %}
+            <p>Please login first to review this project.
+            <a href="{% url 'login' %}?next={{request.path}}"> Login</a>
+            </p>
+            {% endif %}
+             
             <div class="commentList">
 
             {% for review in project.review_set.all %}

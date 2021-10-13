@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 import uuid
 
 
-
-
 class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, null=True, blank=True)
@@ -41,3 +39,23 @@ class Skill(models.Model):
     def __str__(self):
         return self.name
 
+
+class Message(models.Model):
+    sender = models.ForeignKey(
+        Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    recipient = models.ForeignKey(
+        Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name="usermessages")
+    name = models.CharField(max_length=200, null=True, blank=True)
+    email = models.EmailField(max_length=200, null=True, blank=True)
+    subject = models.CharField(max_length=200, null=True, blank=True)
+    message = models.TextField()
+    is_read = models.BooleanField(default=False, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+
+    def __str__(self):
+        return self.subject
+
+    class Meta:
+        ordering = ['is_read', '-created']

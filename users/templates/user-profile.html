@@ -62,7 +62,9 @@
               {% endif %}
             </ul>
             
-            <a href="#" class="btn btn--sub btn--lg">Send Message </a>
+            {% if profile.id != request.user.profile.id %}
+              <a href="{% url 'compose-message' profile.id %}" class="btn btn--sub btn--lg">Send Message </a>
+            {% endif %}
           </div>
         </div>
       </div>

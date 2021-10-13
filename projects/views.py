@@ -20,6 +20,7 @@ def projects(request):
 
 def project(request, pk):
     projectObj = Project.objects.get(id=pk)
+
     form = ReviewForm()
 
     if request.method == 'POST':
@@ -31,6 +32,7 @@ def project(request, pk):
         review.save()
 
         projectObj.getVoteCount
+        # projectObj.reviewers
 
         messages.success(request, 'Your review was successfully submitted!')
 
