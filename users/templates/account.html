@@ -14,7 +14,8 @@
             >
             <img
               class="avatar avatar--xl dev__avatar"
-              src="{{ profile.profile_image.url }}"
+              src="{{ profile.pictureUrl }}"
+              alt="{{profile.name}}"
             />
             <h2 class="dev__name">{{profile.name}}</h2>
             <p class="dev__title">{{profile.short_intro}}</p>
@@ -77,7 +78,9 @@
         </div>
         <div class="settings">
           <h3 class="settings__title">Skills</h3>
-          <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'createskill' %}"
+          <a
+            class="tag tag--pill tag--sub settings__btn tag--lg"
+            href="{% url 'createskill' %}"
             ><i class="im im-plus"></i> Add Skill</a
           >
         </div>
@@ -90,10 +93,14 @@
               <p>{{skill.description}}</p>
             </td>
             <td class="settings__tableActions">
-              <a class="tag tag--pill tag--main settings__btn" href="{% url 'updateskill' skill.id %}"
+              <a
+                class="tag tag--pill tag--main settings__btn"
+                href="{% url 'updateskill' skill.id %}"
                 ><i class="im im-edit"></i> Edit</a
               >
-              <a class="tag tag--pill tag--main settings__btn" href="{% url 'deleteskill' skill.id %}?next=/account/"
+              <a
+                class="tag tag--pill tag--main settings__btn"
+                href="{% url 'deleteskill' skill.id %}?next=/account/"
                 ><i class="im im-x-mark-circle-o"></i> Delete</a
               >
             </td>
@@ -115,9 +122,7 @@
           <tr>
             <td class="settings__thumbnail">
               <a href="{% url 'project' project.id %}"
-                ><img
-                  src="{{ project.featured_image.url }}"
-                  alt="Project Thumbnail"
+                ><img src="{{ project.imageUrl }}" alt="{{ project.title }}"
               /></a>
             </td>
             <td class="settings__tableInfo">

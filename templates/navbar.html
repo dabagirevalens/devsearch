@@ -8,7 +8,7 @@
     right: 13rem;
     background-color: #ddd;
     box-sizing: border-box;
-    border-radius: 12px ;
+    border-radius: 12px;
     width: 180px;
     transition: 0.2s;
     visibility: hidden;
@@ -22,7 +22,7 @@
 
   .dropdown_action ul {
     list-style: none;
-    margin : 2rem 0 2rem 0;
+    margin: 2rem 0 2rem 0;
   }
 </style>
 
@@ -46,25 +46,29 @@
           <a href="{% url 'projects' %}">Projects</a>
         </li>
         {% if request.user.is_authenticated %}
-        <li class="header__menuItem"><a href="{% url 'inbox' %}">Inbox</a></li>
+
+        <li class="header__menuItem">
+          <a href="{% url 'inbox' %}">Inbox{{unreadCount}}</a>
+        </li>
+
         <li class="header__menuItem">
           <a href="{% url 'account' %}">My account</a>
         </li>
 
         <li class="header__menuItem">
-            <img
-              class="avatar avatar--sm dev__avatar"
-              src="{{ request.user.profile.profile_image.url }}"
-              onclick="menuToggle();"
-            />
-            <div class="dropdown_action">
-              <strong>{{ request.user.profile.name }}</strong>
-              <ul>
-                <li >
-                  <a href="{% url 'logout' %}">Logout</a>
-                </li>
-              </ul>
-            </div>
+          <img
+            class="avatar avatar--sm dev__avatar"
+            src="{{ request.user.profile.pictureUrl }}"
+            onclick="menuToggle();"
+          />
+          <div class="dropdown_action">
+            <strong>{{ request.user.profile.name }}</strong>
+            <ul>
+              <li>
+                <a href="{% url 'logout' %}">Logout</a>
+              </li>
+            </ul>
+          </div>
         </li>
 
         {% else %}
@@ -77,11 +81,9 @@
   </div>
 </header>
 
-
 <script>
- 
-function menuToggle() {
-    let menuToggle = document.querySelector('.dropdown_action')
-    menuToggle.classList.toggle('active')
-}
+  function menuToggle() {
+    let menuToggle = document.querySelector(".dropdown_action");
+    menuToggle.classList.toggle("active");
+  }
 </script>
