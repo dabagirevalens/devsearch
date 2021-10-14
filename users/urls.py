@@ -9,7 +9,7 @@ urlpatterns = [
     path('account/', userAccount, name='account'),
 
     path('', profiles, name='profiles'),
-    path('profile/<str:pk>/', userProfile, name='user-profile'),
+    path('profile/<str:pk>', userProfile, name='user-profile'),
 
     path('edit-account/', editAccount, name='edit-account'),
 
