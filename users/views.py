@@ -217,7 +217,7 @@ def viewMessage(request, pk):
     return render(request, 'message.html', context)
 
 
-# @login_required(login_url='login')
+
 def createMessage(request, pk):
     recipient = Profile.objects.get(id=pk)
     form = MessageForm()

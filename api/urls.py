@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (getProject, getProjects, getRoutes, projectVote)
+from .views import (getProject, getProjects, getRoutes, projectVote, removeTag)
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView, TokenRefreshView)
@@ -15,4 +15,5 @@ urlpatterns = [
     path('projects/', getProjects),
     path('projects/<str:pk>/', getProject),
     path('projects/<str:pk>/vote/', projectVote),
+    path('remove-tag/', removeTag)
 ]
