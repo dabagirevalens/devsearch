@@ -74,7 +74,7 @@ def register(request):
 def profiles(request):
     profiles, search_query = searchDevelopers(request)
 
-    custom_range, profiles, last_page = paginateProfiles(request, profiles, 6)
+    custom_range, profiles, last_page = paginateProfiles(request, profiles, 1)
 
     context = {'profiles': profiles, 'search_query': search_query,
                'custom_range': custom_range, 'last_page': last_page}
