@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from datetime import timedelta
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,9 +14,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pg43jy6ibca%8na8g!a5^hw03atk!@7zdm+a4&4fsm%k2a#^2^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'devsearch-dvbara.herokuapp.com/']
 
 
 # Application definition
@@ -88,7 +90,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    
+
 ]
 
 ROOT_URLCONF = 'devsearch.urls'
@@ -117,16 +119,19 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'devsearch',
-        'USER': 'postgres',
-        'PASSWORD' : 'const',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+
+# LOCAL DATABASES
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'devsearch',
+#         'USER': 'postgres',
+#         'PASSWORD' : 'const',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # DATABASES = {
@@ -135,6 +140,20 @@ DATABASES = {
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+# PRODUCTION DATABASES
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd5d0g7pgbv417a',
+        'USER': 'ucmmkfvssiiwkc',
+        'PASSWORD': '10b86157853d403a9ff927967273214067639faa0aa268ab3c2a50aa8febc1d0',
+        'HOST': 'ec2-107-23-213-65.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation
@@ -191,6 +210,8 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
