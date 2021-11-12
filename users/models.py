@@ -13,7 +13,7 @@ class Profile(models.Model):
     short_intro = models.CharField(max_length=200, null=True, blank=True)
     bio = models.TextField(blank=True, null=True)
     profile_image = models.ImageField(
-        blank=True, null=True, upload_to='profiles/', default='https://res.cloudinary.com/images-bucket/image/upload/v1636735922/devsearch/avatars/user-default_x56brg.png')
+        blank=True, null=True, upload_to='profiles/', default='profiles/user-default.png')
     social_github = models.CharField(max_length=100, null=True, blank=True)
     social_linkedin = models.CharField(max_length=100, null=True, blank=True)
     social_twitter = models.CharField(max_length=100, null=True, blank=True)

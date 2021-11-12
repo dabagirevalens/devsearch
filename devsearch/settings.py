@@ -147,10 +147,10 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd5d0g7pgbv417a',
-        'USER': 'ucmmkfvssiiwkc',
-        'PASSWORD': '10b86157853d403a9ff927967273214067639faa0aa268ab3c2a50aa8febc1d0',
-        'HOST': 'ec2-107-23-213-65.compute-1.amazonaws.com',
+        'NAME': 'd490ugmhrlr5tl',
+        'USER': 'iniheksgaysrkh',
+        'PASSWORD': 'c0cf491d70080f95a3898985de9cb453b67e1c22a36bf7debf78a8989aa1ef01',
+        'HOST': 'ec2-54-160-35-196.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
